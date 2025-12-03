@@ -10,6 +10,31 @@ import pandas as pd
 
 app = FastAPI()
 
+# query
+# path
+# header
+# body 
+
+# @app.get('/simple')
+# def simple():
+#     return "Hello!!!"
+
+# @app.get('/test')
+# def test(name: str):
+#     return f"Hello, {name}!!!"
+
+# @app.get('/test/{name}')
+# def test(name: str):
+#     return f"Hello, {name}!!!"
+
+# @app.get('/test')
+# def test(name: Annotated[str, Header(alias="X-Name")]) -> str: 
+#     return f"Hello, {name}!!!"
+
+# @app.post('/test')
+# def test(name: Annotated[str, Body()]) -> str: 
+#     return f"Hello, {name}!!!"
+
 class MLRequest(BaseModel):
     a: float
     b: float
@@ -47,32 +72,6 @@ def load_model():
     if loaded_model is None:
         loaded_model = joblib.load('model.joblib')
     return loaded_model
-
-
-# query
-# path
-# header
-# body 
-
-# @app.get('/simple')
-# def simple():
-#     return "Hello!!!"
-
-# @app.get('/test')
-# def test(name: str):
-#     return f"Hello, {name}!!!"
-
-# @app.get('/test/{name}')
-# def test(name: str):
-#     return f"Hello, {name}!!!"
-
-# @app.get('/test')
-# def test(name: Annotated[str, Header(alias="X-Name")]) -> str: 
-#     return f"Hello, {name}!!!"
-
-# @app.post('/test')
-# def test(name: Annotated[str, Body()]) -> str: 
-#     return f"Hello, {name}!!!"
 
 @app.post('/predict')
 def predict(data: Annotated[MLRequest, Body()], model=Depends(load_model)) -> MLResponse:
