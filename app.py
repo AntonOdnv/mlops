@@ -35,6 +35,7 @@ app = FastAPI()
 # def test(name: Annotated[str, Body()]) -> str: 
 #     return f"Hello, {name}!!!"
 
+
 class MLRequest(BaseModel):
     a: float
     b: float
